@@ -12,4 +12,4 @@ roslaunch rov_control rover_controller.launch use_rviz:=true
 ```
 > In the terminal, press *h* to display help for keyboard control.
 
-[1]:link-to-rov_bus
+[1]:https://github.com/meetm473/rov_bus
