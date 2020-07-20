@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	<arg name="use_rviz" default="false"/>
+	
+	<arg name="model_name" value="rov_bus"/>
+	<include file="$(find rov_bus)/launch/rov_bus.launch">
+		<arg name="model_name" value="$(arg model_name)"/>
+	</include>
+	
+	<group ns="$(arg model_name)">
+      <!-- Load controller configurations (vehicle and arm) from YAML file to parameter server -->
+      <rosparam file="$(find rov_bus_control)/config/rov_control.yaml" command="load"/>
+      <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rov_bus)/config/sim_viz.rviz" output="screen" if="$(arg use_rviz)"/>
+      
+    <node name="rov_control"
+	  pkg="rov_bus_control"
+	  type="rov_control"
+	  output="screen"
+	/>
+      
+	</group>
+	
+</launch>
